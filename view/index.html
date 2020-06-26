@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="robots" content="index,follow" />
+    <title>Shorters - good ol' URL shortener</title>
+    <meta name="description" content="No more lengthy URLs" />
+    <meta name="keywords" content="URL,url,short,shorten,shortening,custom" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Shorters" />
+    <meta property="og:url" content="https://shorters.co" />
+    <meta property="og:image" content="static/apple-touch-icon.png" />
+    <meta property="og:title" content="Shorters - good ol' URL shortener" />
+    <meta property="og:description" content="No more lengthy URLs" />
+    <link rel="canonical" href="https://shorters.co" />
+    <link rel="alternate" href="https://shorters.co" hreflang="x-default" />
+    <link rel="alternate" href="https://shorters.co" hreflang="en" />
+    <link rel="manifest" href="static/manifest.json" />
+    <link rel="shortcut icon" href="static/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="static/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="static/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="static/favicon-16x16.png"
+    />
+    <link type="text/css" rel="stylesheet" href="static/index.css" />
+  </head>
+  <body>
+    <div class="home">
+      <div class="nav">
+        <h1>Sometimes, less is more</h1>
+        <p id="user"></p>
+        <a href="signin">Sign In</a>
+      </div>
+      <form class="shorten-form">
+        <input type="text" autocomplete="off" placeholder="A long URL" />
+        <button type="submit">Shorten</button>
+      </form>
+      <p></p>
+    </div>
+
+    <script type="text/javascript" src="static/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+* {
+  font-family: monospace;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: #fff;
+  background: #222;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+p,
+a,
+input,
+button {
+  font-size: 1.25rem;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+input {
+  width: 100%;
+  margin-bottom: 2rem;
+  color: white;
+  background: none;
+  border: none;
+  border-bottom: 2px solid white;
+  outline: none;
+}
+
+button {
+  padding: 0.5em 1em;
+  color: tomato;
+  background: transparent;
+  border: 2px solid tomato;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  transition: color 0.25s ease;
+}
+
+button:hover {
+  color: white;
+  background: tomato;
+}
+
+.home {
+  max-width: 750px;
+  margin: auto;
+  padding: 10% 2rem 0 2rem;
+}
+
+.nav {
+  margin-bottom: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sign-in {
+  max-width: 750px;
+  margin: auto;
+  padding: 10% 2rem 0 2rem;
+}
+
+.sign-in h2 {
+  margin-bottom: 3rem;
+}
