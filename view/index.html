@@ -12,47 +12,103 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Shorters" />
     <meta property="og:url" content="https://shorters.co" />
-    <meta property="og:image" content="static/apple-touch-icon.png" />
+    <meta property="og:image" content="/static/apple-touch-icon.png" />
     <meta property="og:title" content="Shorters - good ol' URL shortener" />
     <meta property="og:description" content="No more lengthy URLs" />
     <link rel="canonical" href="https://shorters.co" />
     <link rel="alternate" href="https://shorters.co" hreflang="x-default" />
     <link rel="alternate" href="https://shorters.co" hreflang="en" />
-    <link rel="manifest" href="static/manifest.json" />
-    <link rel="shortcut icon" href="static/favicon.ico" />
+    <link rel="manifest" href="/static/manifest.json" />
+    <link rel="shortcut icon" href="/static/favicon.ico" />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="static/apple-touch-icon.png"
+      href="/static/apple-touch-icon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="static/favicon-32x32.png"
+      href="/static/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="static/favicon-16x16.png"
+      href="/static/favicon-16x16.png"
     />
-    <link type="text/css" rel="stylesheet" href="static/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/nes.css@latest/css/nes.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/index.css" />
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-145847514-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-145847514-1");
+    </script>
   </head>
-  <body>
-    <div class="home">
-      <div class="nav">
-        <h1>Sometimes, less is more</h1>
-        <p id="user"></p>
-        <a href="signin">Sign In</a>
-      </div>
-      <form class="shorten-form">
-        <input type="text" autocomplete="off" placeholder="A long URL" />
-        <button type="submit">Shorten</button>
-      </form>
-      <p></p>
-    </div>
 
-    <script type="text/javascript" src="static/index.js"></script>
+  <body>
+    <nav>
+      <h1>Sometimes, less is more</h1>
+      <a
+        href="https://www.linkedin.com/in/tuanle99"
+        target="_blank"
+        rel="noopener"
+        >Connect with me!</a
+      >
+    </nav>
+    <div class="container">
+      <form onsubmit="onSubmit(event)">
+        <div class="nes-field url-field">
+          <input
+            id="url-input"
+            type="text"
+            class="nes-input"
+            autocomplete="off"
+            placeholder="A long URL, ya know"
+          />
+          <button id="submit-btn" class="nes-btn is-primary" type="submit">
+            Shorten
+          </button>
+          <button id="custom-btn" class="nes-btn" type="button"><></button>
+        </div>
+        <div id="custom-field" class="nes-field url-field">
+          <span>https://shorters.co/</span>
+          <input
+            id="custom-input"
+            type="text"
+            class="nes-input"
+            autocomplete="off"
+            placeholder="custom short URL"
+          />
+        </div>
+      </form>
+      <p id="error" class="error-msg"></p>
+      <ul id="url-list" class="url-list nes-container is-rounded"></ul>
+    </div>
+    <a
+      href="https://github.com/tumile"
+      target="_blank"
+      rel="noopener"
+      class="github-link"
+    >
+      <p class="nes-balloon from-right">Check out<br />my GitHub!</p>
+      <i class="nes-octocat animate"></i>
+    </a>
+    <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+    <script src="/static/index.js"></script>
   </body>
 </html>

@@ -1,80 +1,113 @@
-* {
-  font-family: monospace;
-}
-
-html,
-body {
-  height: 100%;
-}
-
 body {
   margin: 0;
-  color: #fff;
-  background: #222;
+  height: 100vh;
+  min-width: 500px;
+  font-size: 14px;
 }
 
-h1 {
-  font-size: 2rem;
-}
-
-p,
-a,
-input,
-button {
-  font-size: 1.25rem;
-}
-
-a {
-  color: white;
-  text-decoration: none;
-}
-
-input {
-  width: 100%;
-  margin-bottom: 2rem;
-  color: white;
-  background: none;
-  border: none;
-  border-bottom: 2px solid white;
-  outline: none;
-}
-
-button {
-  padding: 0.5em 1em;
-  color: tomato;
-  background: transparent;
-  border: 2px solid tomato;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-  transition: background-color 0.25s ease;
-  transition: color 0.25s ease;
-}
-
-button:hover {
-  color: white;
-  background: tomato;
-}
-
-.home {
-  max-width: 750px;
-  margin: auto;
-  padding: 10% 2rem 0 2rem;
-}
-
-.nav {
-  margin-bottom: 4rem;
+nav {
+  padding: 2em 2em 0 2em;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
-.sign-in {
-  max-width: 750px;
-  margin: auto;
-  padding: 10% 2rem 0 2rem;
+nav a {
+  margin-left: auto;
 }
 
-.sign-in h2 {
-  margin-bottom: 3rem;
+.container {
+  padding: 0 1em;
+  max-width: 800px;
+  margin: 10% auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nes-input:focus,
+.nes-btn:focus {
+  outline: none !important;
+}
+
+.url-field {
+  display: flex;
+  align-items: center;
+}
+
+#url-input {
+  margin-right: -4px;
+}
+
+#submit-btn {
+  height: 45px;
+  margin-right: 10px;
+}
+
+#custom-btn {
+  height: 45px;
+}
+
+#custom-field {
+  display: none;
+  margin-top: 10px;
+  padding-left: 25px;
+}
+
+#custom-input {
+  height: 40px;
+}
+
+.url-list {
+  padding: 0 !important;
+  margin-top: 1.5em !important;
+  max-height: 360px;
+  overflow-y: scroll;
+  list-style-type: none;
+  background: white;
+}
+
+.list-item {
+  padding: 0 1.5em;
+  margin: 1em 0 !important;
+}
+
+.short-url {
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+.copy-btn {
+  padding: 0;
+  font-size: 12px;
+  margin-left: 1em;
+}
+
+.original-url {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.error-msg {
+  display: none;
+  margin: 1em auto;
+}
+
+.github-link {
+  position: fixed;
+  right: 20px;
+  bottom: 10px;
+  z-index: 999;
+  display: flex;
+  height: 100px;
+  color: #333;
+  text-decoration: none !important;
+}
+
+.github-link > p.nes-balloon {
+  color: #333;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  align-self: flex-start;
 }
