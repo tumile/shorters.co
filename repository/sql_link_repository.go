@@ -2,6 +2,7 @@ package repository
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"os"
 	"shorters/domain"
@@ -17,7 +18,7 @@ type sqlLinkRepository struct {
 func newSQLClient() *sql.DB {
 	username := os.Getenv("MYSQL_USERNAME")
 	password := os.Getenv("MYSQL_PASSWORD")
-	db, err := sql.Open("mysql", username+":"+password+"@/Shorters")
+	db, err := sql.Open("mysql", username+":"+password+"@/shorters")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -35,6 +36,7 @@ func (r *sqlLinkRepository) Find(key string) (*domain.Link, error) {
 	row := r.client.QueryRow("select `Key`, `URL` from `Links` where `Key` = ?", key)
 	var link domain.Link
 	if err := row.Scan(&link.Key, &link.URL); err != nil {
+		fmt.Println(err)
 		return nil, err
 	}
 	return &link, nil

@@ -12,7 +12,8 @@ import (
 
 type LinkController interface {
 	Redirect(w http.ResponseWriter, r *http.Request)
-	Store(w http.ResponseWriter, r *http.Request)
+	Shorten(w http.ResponseWriter, r *http.Request)
+	CustomShorten(w http.ResponseWriter, r *http.Request)
 }
 
 type linkController struct {
@@ -38,15 +39,33 @@ func (c *linkController) Redirect(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, url, http.StatusMovedPermanently)
 }
 
-func (c *linkController) Store(w http.ResponseWriter, r *http.Request) {
-	var req dto.StoreRequest
+func (c *linkController) Shorten(w http.ResponseWriter, r *http.Request) {
+	var req dto.ShortenRequest
 	err := json.NewDecoder(r.Body).Decode(&req)
 	if err != nil || req.URL == "" {
 		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 		return
 	}
 	user, _ := r.Context().Value("user").(domain.User)
-	res, err := c.linkService.Store(req.URL, user)
+	res, err := c.linkService.Shorten(req.URL, user)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	_ = json.NewEncoder(w).Encode(res)
+}
+
+func (c *linkController) CustomShorten(w http.ResponseWriter, r *http.Request) {
+	var req dto.CustomShortenRequest
+	err := json.NewDecoder(r.Body).Decode(&req)
+	if err != nil || req.URL == "" || req.CustomKey == "" {
+		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+		return
+	}
+	user, _ := r.Context().Value("user").(domain.User)
+	res, err := c.linkService.CustomShorten(req.URL, req.CustomKey, user)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

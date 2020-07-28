@@ -1,12 +1,12 @@
 package service
 
 import (
+	"fmt"
 	"log"
 	"shorters/domain"
 	"shorters/repository"
 	"shorters/service/cache"
 	"shorters/service/dto"
-	"time"
 
 	"github.com/teris-io/shortid"
 )
@@ -46,21 +46,30 @@ func (s *linkService) addVisits(key string) {
 	}
 }
 
-func (s *linkService) Store(url string, user domain.User) (*dto.StoreResponse, error) {
+func (s *linkService) Shorten(url string, user domain.User) (*dto.ShortenResponse, error) {
 	var link domain.Link
 	link.Key = shortid.MustGenerate()
 	link.URL = url
-	link.Creator = user.Email
-	if user.Email == "" {
-		link.CreatedTime = time.Now().Unix()
-		link.ExpiredTime = time.Now().Add(time.Minute).Unix()
-	}
 	err := s.linkRepository.Store(&link)
 	if err != nil {
 		return nil, err
 	}
-	if user.Email != "" {
-		s.linkCache.Put(link.Key, link.URL)
+	s.linkCache.Put(link.Key, link.URL)
+	return &dto.ShortenResponse{Key: link.Key}, nil
+}
+
+func (s *linkService) CustomShorten(url, customKey string, user domain.User) (*dto.ShortenResponse, error) {
+	_, err := s.linkRepository.Find(customKey)
+	if err == nil {
+		return nil, fmt.Errorf("Key exists")
 	}
-	return &dto.StoreResponse{Key: link.Key}, nil
+	var link domain.Link
+	link.Key = customKey
+	link.URL = url
+	err = s.linkRepository.Store(&link)
+	if err != nil {
+		return nil, err
+	}
+	s.linkCache.Put(link.Key, link.URL)
+	return &dto.ShortenResponse{Key: link.Key}, nil
 }

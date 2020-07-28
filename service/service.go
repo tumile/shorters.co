@@ -7,5 +7,6 @@ import (
 
 type LinkService interface {
 	Find(key string) (string, error)
-	Store(url string, user domain.User) (*dto.StoreResponse, error)
+	Shorten(url string, user domain.User) (*dto.ShortenResponse, error)
+	CustomShorten(url, customKey string, user domain.User) (*dto.ShortenResponse, error)
 }

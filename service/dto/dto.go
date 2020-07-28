@@ -5,15 +5,20 @@ type VerifyRequest struct {
 	OTP   string `json:"otp"`
 }
 
-type StoreRequest struct {
+type ShortenRequest struct {
 	URL string `json:"url"`
+}
+
+type CustomShortenRequest struct {
+	URL       string `json:"url"`
+	CustomKey string `json:"custom_key"`
 }
 
 type TokenResponse struct {
 	Token string `json:"token"`
 }
 
-type StoreResponse struct {
+type ShortenResponse struct {
 	Key string `json:"key"`
 }
 

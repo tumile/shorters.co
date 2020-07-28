@@ -39,7 +39,8 @@ func main() {
 
 	router.Get("/{key}", linkController.Redirect)
 
-	router.Post("/", linkController.Store)
+	router.Post("/shorten", linkController.Shorten)
+	router.Post("/custom-shorten", linkController.CustomShorten)
 	router.Post("/signin", authController.SignIn)
 	router.Post("/verify", authController.Verify)
 
